@@ -12,7 +12,6 @@ useEffect(() => {
     const getProducts = async () => {
          const response = await axios('http://localhost:5000/products');
          dispatch(allProducts(response.data))
-         console.log(response.data)
     }
 
     getProducts()
