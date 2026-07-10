@@ -4,18 +4,22 @@ import './css/style.css'
 import MainLayout from './Layout/MainLayout'
 import ProductList from './pages/ProductList'
 import { Provider } from 'react-redux'
+// import Cart from './pages/Cart-copy'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
   return (
     <>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<MainLayout />}>
-              <Route path='/' element={<ProductList />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+      <Toaster />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path='/' element={<ProductList />} />
+            <Route path='/cart-copy' element={<Cart />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
