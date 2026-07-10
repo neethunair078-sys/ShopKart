@@ -6,9 +6,18 @@ import Navbar from '../components/Navbar'
 const MainLayout = () => {
     return (
         <>
-            <Navbar />
+            {/* <Navbar />
             <Outlet />
-            <Footer />
+            <Footer /> */}
+            <div className="layout">
+                <Navbar />
+
+                <main className="layout-content">
+                    <Outlet />
+                </main>
+
+                <Footer />
+            </div>
         </>
     )
 }
