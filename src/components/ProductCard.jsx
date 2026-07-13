@@ -33,14 +33,14 @@ const ProductCard = ({item, thumbnail, title, price, rating,reviews}) => {
             
 
             {!isAdded ? 
-              <button  className='btn-primary flex items-center justify-center gap-2 p-1' onClick={handleAddToCart}>
+              <button  className='btn-primary flex items-center justify-center gap-2 p-1 mt-2' onClick={handleAddToCart}>
                 <HiOutlineShoppingCart size={20} className='logo-icon' /> 
                 Add to cart
             </button>  
 
             :
 
-            <Link to="/cart" className='btn-primary flex items-center justify-center gap-2 p-'>
+            <Link to="/cart" className='btn-primary flex items-center justify-center gap-2 p-1 mt-2'>
                 <HiOutlineShoppingCart size={20} className='logo-icon' /> 
                 Go to cart 
             </Link>  
