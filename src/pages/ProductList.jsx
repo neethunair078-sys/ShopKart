@@ -3,21 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { allProducts } from '../redux/slices/productSlice'
 import axios from 'axios'
 import ProductCard from '../components/ProductCard'
+import useProducts from '../hook/useProducts'
 
 const ProductList = () => {
-const dispatch = useDispatch()
-const products = useSelector((state) => state.products.products)
 
-useEffect(() => {
-    const getProducts = async () => {
-         const response = await axios('http://localhost:5000/products');
-         dispatch(allProducts(response.data))
-    }
-
-    getProducts()
-
-}, [])
-
+const products = useProducts() // custom hook for all the product listing
 
   return (
     <>

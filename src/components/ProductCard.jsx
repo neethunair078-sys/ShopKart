@@ -24,7 +24,7 @@ const ProductCard = ({item, thumbnail, title, price, rating,reviews}) => {
   return (
     <>
         <div className='card p-5 space-y-4'>
-            <Link to="/product-details">
+            <Link to={`/product-details/${item.id}`}>
                 <img src={thumbnail} alt="" />
                 <h2 className='text-md font-bold'>{title}</h2>
                 <StarRating rating={rating} reviews={reviews} />
