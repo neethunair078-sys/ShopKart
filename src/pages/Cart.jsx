@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import '../css/cart.css'
 import { useState } from "react"
-import { decrementQuantity, incrementQuantity } from "../redux/slices/cartSlice"
+import { decrementQuantity, incrementQuantity, removeFromCart } from "../redux/slices/cartSlice"
 
 const Cart = () => {
     const cartitems = useSelector((state) => state.cart.cartItems)
@@ -15,6 +15,10 @@ const Cart = () => {
 
     const handlequantityDec = (id) => {
         dispatch(decrementQuantity(id))
+    }
+
+    const handleRemove = (id) => {
+        dispatch(removeFromCart(id))
     }
 
     return (
@@ -33,7 +37,7 @@ const Cart = () => {
                                     <button onClick={() => handlequantityDec(item.id)}>-</button>
                                     <div className="price-section">
                                         <p>${item.price}</p>
-                                        <p className="remove">Remove</p>
+                                        <button className="remove" onClick={() => handleRemove(item.id)}>Remove</button>
                                     </div>
                                 </div>
                             </div>
