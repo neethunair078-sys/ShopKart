@@ -1,35 +1,51 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
+import { HiOutlineShoppingCart } from "react-icons/hi2";
+import toast from "react-hot-toast";
+
 const Singleview = () => {
-    const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(null);
 
-    const { productid } = useParams()
+  const { productid } = useParams();
 
-    useEffect(() => {
-        const getProduct = async () => {
-            try {
-                const response = await axios.get(
-                    `http://localhost:5000/products/${productid}`
-                );
-                setProduct(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
+  const dispatch = useDispatch();
 
-        getProduct();
-    }, [productid]);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
-    if (!product) {
-        return <p>Loading...</p>;
-    }
+  const isAdded = cartItems.find(
+    (item) => item.id === product?.id
+  );
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    toast.success("Added to your cart successfully");
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/products/${productid}`
+        );
+
+        setProduct(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getProduct();
+  }, [productid]);
+
+  if (!product) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-8">
-
-      {/* Breadcrumb */}
-      <div className="mb-6 text-gray-500 text-sm">
-        Home &gt; Electronics &gt; Laptop &gt; HP Laptop
-      </div>
 
       {/* Product Section */}
       <div className="flex flex-col md:flex-row gap-10">
@@ -40,8 +56,8 @@ const Singleview = () => {
           <div className="bg-white border rounded-2xl shadow-lg p-6">
 
             <img
-              src="https://via.placeholder.com/500"
-              alt="Product"
+              src={product.images?.[0]}
+              alt={product.title}
               className="w-full h-[450px] object-contain"
             />
 
@@ -52,41 +68,24 @@ const Singleview = () => {
         {/* Right Side */}
         <div className="w-full md:w-1/2 space-y-5">
 
-         
-          <h1>
-            {product.title}
+          <h1 >
+              Item:{product.title}
           </h1>
 
-         
-         
+          <h2 >
+            Price: ${product.price}
+          </h2>
 
-          {/* Price */}
-          <div className="flex items-center gap-4">
+          <p>
+           
+           Category: {product.category}
+          </p>
 
-            <h2 >
-              ₹30,000
-            </h2>
-
-          
-
+          <p>
             
-
-          </div>
-
-          <p>
-           
-              Category : Laptop
+           Brand: {product.brand}
           </p>
 
-          
-          <p>
-           
-              Brand :   HP
-          </p>
-
-        
-          
-          {/* Description */}
           <div>
 
             <h3 className="text-xl font-bold mb-2">
@@ -94,53 +93,48 @@ const Singleview = () => {
             </h3>
 
             <p className="text-gray-600 leading-7">
-              This HP laptop is designed for students,
-              office work and everyday use. It delivers
-              excellent performance with a stylish design.
+              {product.description}
             </p>
 
           </div>
 
-          {/* Quantity */}
-          <div className="flex items-center gap-4">
+          {/* Button Section */}
 
-            <span className="font-semibold">
-              Quantity
-            </span>
+          <div className="mt-6">
 
-            <div className="flex border rounded">
+            {!isAdded ? (
 
-              <button className="px-4 py-2">
-                -
+              <button
+                onClick={handleAddToCart}
+                className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+              >
+
+                <HiOutlineShoppingCart size={20} />
+
+                Add To Cart
+
               </button>
 
-              <span className="px-5 py-2">
-                1
-              </span>
+            ) : (
 
-              <button className="px-4 py-2">
-                +
-              </button>
+              <Link
+                to="/cart"
+                className="bg-green-600 text-white px-8 py-3 rounded-lg flex items-center gap-2 w-fit"
+              >
 
-            </div>
+                <HiOutlineShoppingCart size={20} />
+
+                Go To Cart
+
+              </Link>
+
+            )}
 
           </div>
 
-          {/* Buttons */}
-          <div className="flex gap-4">
+          {/* Delivery */}
 
-            <button >
-              Add To Cart
-            </button>
-
-            <button>
-              Buy Now
-            </button>
-
-          </div>
-
-          {/* Delivery Information */}
-          <div className="grid grid-cols-3 gap-4 border rounded-xl p-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border rounded-lg p-5">
 
             <div className="text-center">
 
@@ -150,22 +144,7 @@ const Singleview = () => {
 
             </div>
 
-            <div className="text-center">
-              <p className="font-semibold">
-                1 Year Warranty
-              </p>
 
-            </div>
-
-            <div className="text-center">
-
-            
-
-              <p >
-                7 Days Return
-              </p>
-
-            </div>
 
           </div>
 
@@ -173,21 +152,32 @@ const Singleview = () => {
 
       </div>
 
-      {/* Description Section */}
-      <div>
+   
 
-        <h2 >
-          Product Description
+      <div className="mt-10">
+
+        <h2 className="text-2xl font-bold mb-5">
+          Customer Reviews
         </h2>
 
-        <p >
+        {product.reviews.map((review, index) => (
 
-          The HP Laptop delivers powerful performance,
-          a modern design, and a long-lasting battery.
-          It is suitable for programming, office work,
-          online learning, and entertainment.
+          <div
+            key={index}
+            className="border rounded-lg p-4 mb-4 shadow-sm"
+          >
 
-        </p>
+            <h3 className="font-semibold">
+              {review.reviewerName}
+            </h3>
+
+            <p className="text-gray-600">
+              {review.comment}
+            </p>
+
+          </div>
+
+        ))}
 
       </div>
 
