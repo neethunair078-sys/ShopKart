@@ -18,7 +18,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path='/' element={<ProductList />} />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/product-details' element={<Singleview/>}/>
+            <Route path='/product-details/:productid' element={<Singleview/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,4 +1,28 @@
 const Singleview = () => {
+    const [product, setProduct] = useState(null);
+
+    const { productid } = useParams()
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:5000/products/${productid}`
+                );
+                setProduct(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getProduct();
+    }, [productid]);
+
+    if (!product) {
+        return <p>Loading...</p>;
+    }
+
+
   return (
     <div className="max-w-7xl mx-auto p-8">
 
@@ -30,7 +54,7 @@ const Singleview = () => {
 
          
           <h1>
-            HP Laptop
+            {product.title}
           </h1>
 
          
