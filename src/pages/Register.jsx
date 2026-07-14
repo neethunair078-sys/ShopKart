@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 
@@ -11,8 +13,14 @@ function Register() {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    function handleRegister() {
-        console.log("Register")
+    const handleRegister = async () => {
+        // console.log("Register")
+
+
+
+        const existingUser = await axios.get(
+            `http://localhost:5000/users?email=${email}`
+        );
 
         if (name === "") {
             alert("Name is Required")
@@ -34,7 +42,19 @@ function Register() {
             alert("Passwords do not match")
             return;
         }
-        alert("Registration Successful");
+
+        const user = {
+            name,
+            email,
+            password
+        };
+
+        try {
+            await axios.post("http://localhost:5000/users", user);
+            toast.success("Registration Successful")
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 

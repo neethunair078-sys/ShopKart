@@ -17,12 +17,12 @@
 .cart-items {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background: #fff;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
     border: 1px solid #ddd;
+    gap: 30px;
 }
 
 .cart-items img {
@@ -40,7 +40,7 @@
     margin: 8px 0;
 }
 
-.cart-items button {
+.quantity button {
     width: 35px;
     height: 35px;
     border: none;
@@ -63,6 +63,16 @@
     font-weight: bold;
 }
 
+.cart-details {
+    flex: 2;
+}
+
+.price-section p{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 
 .order-summary {
     background: #f8f8f8;
@@ -71,6 +81,33 @@
     border: 1px solid #ddd;
     position: sticky;
     top: 20px;
+}
+
+
+.quantity {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-section {
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.remove {
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+    height: auto;
+    padding: 0;
 }
 
 .order-summary h2 {
@@ -109,7 +146,7 @@
 
 .order-summary h2 {
     margin-bottom: 25px;
-    font-size: 28px;
+    font-size: 30px;
     text-align: center;
 }
 
