@@ -12,7 +12,7 @@ const Cart = () => {
     const handlequantityInc = (id) => {
         dispatch(incrementQuantity(id))
     }
-
+    
     const handlequantityDec = (id) => {
         dispatch(decrementQuantity(id))
     }
@@ -28,21 +28,45 @@ const Cart = () => {
                 <div className=" col-span-2 bg-gray-100 p-4">
                     {cartitems.map((item) => (
                         <div key={item.id} className="cart-items">
+
+
                             <img src={item.thumbnail} alt="" />
+
+
                             <div className="cart-details">
                                 <h2>{item.title}</h2>
-                                <div className="quantity">
-                                    <button onClick={() => handlequantityInc(item.id)}>-</button>
-                                    <span>{item.quantity}</span>
-                                    <button onClick={() => handlequantityDec(item.id)}>+</button>
-                                    <div className="price-section">
-                                        <p>${item.price}</p>
-                                        <button className="remove" onClick={() => handleRemove(item.id)}>Remove</button>
-                                    </div>
-                                </div>
                             </div>
+
+
+                            <div className="quantity">
+                                <button onClick={() => handlequantityDec(item.id)}>
+                                    -
+                                </button>
+
+                                <span>{item.quantity}</span>
+
+                                <button onClick={() => handlequantityInc(item.id)}>
+                                    +
+                                </button>
+                            </div>
+
+
+                            <div className="price-section">
+                                <p>${item.price}</p>
+
+                                <button
+                                    className="remove"
+                                    onClick={() => handleRemove(item.id)}
+                                >
+                                    Remove
+                                </button>
+                            </div>
+
                         </div>
                     ))}
+
+
+
                 </div>
                 <div>
                     <div className="order-summary">
