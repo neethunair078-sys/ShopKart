@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast'
 import Checkout from './pages/Checkout' 
 import Register from './pages/Register'
 import Singleview from './pages/Singleview'
+import Orderhistory from './pages/Orderhistory'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<ProductList />} />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/Checkout' element={<Checkout/>} />
+            <Route path='/checkout' element={<Checkout/>} />
+            <Route path='/Orderhistory' element={<Orderhistory/>}/>
             <Route path='/product-details/:productid' element={<Singleview/>}/>
           </Route>
         </Routes>

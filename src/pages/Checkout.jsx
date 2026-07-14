@@ -64,14 +64,7 @@ const Checkout = () => {
             <div className="payment-section bg-green-200 p-6 rounded-lg mt-6">
                 <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
 
-                <div className="payment-option ">
-                    <input
-                        type="radio"
-                        id="upi"
-                        name="payment"
-                    />
-                    <label htmlFor="upi">UPI</label>
-                </div>
+                <div className="payment-option">
 
                 <div className="payment-option">
                     <input
@@ -81,21 +74,18 @@ const Checkout = () => {
                     />
                     <label htmlFor="cod">Cash on Delivery</label>
                 </div>
-
-                <div className="payment-option">
-                    <input
-                        type="radio"
-                        id="netbanking"
-                        name="payment"
-                    />
-                    <label htmlFor="netbanking">Net Banking</label>
                 </div>
             </div>
 
             {/* Confirm Button */}
-            <button className="confirm-btn">
+            <div className="mt-8">
+            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 confirm-btn">
                 Confirm Order
             </button>
+            </div>
+            <div className="mt-9 justify-between">
+                <button className="w-36 bg-blue-400 justify-center rounded-lg font-bold text-shadow-white hover:bg-red-800">Cancel</button>
+            </div>
 
         </div>
     );
