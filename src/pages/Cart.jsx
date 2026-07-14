@@ -2,23 +2,40 @@ import { useDispatch, useSelector } from "react-redux"
 import '../css/cart.css'
 import { useState } from "react"
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../redux/slices/cartSlice"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const Cart = () => {
+
+    const navigate = useNavigate()
+    
     const cartitems = useSelector((state) => state.cart.cartItems)
-    console.log(cartitems);
+    
 
     const dispatch = useDispatch()
 
     const handlequantityInc = (id) => {
         dispatch(incrementQuantity(id))
     }
-    
+
     const handlequantityDec = (id) => {
         dispatch(decrementQuantity(id))
     }
 
     const handleRemove = (id) => {
         dispatch(removeFromCart(id))
+    }
+
+    const handleCheckout = () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            toast.error("Please login to continue.");
+            navigate("/login");
+            return;
+        }
+
+        navigate("/checkout");
     }
 
     return (
@@ -90,7 +107,7 @@ const Cart = () => {
 
                         </div>
 
-                        <button className="checkout-btn">
+                        <button onClick={handleCheckout} className="checkout-btn">
                             Proceed to Checkout
                         </button>
                     </div>

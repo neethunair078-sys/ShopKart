@@ -1,23 +1,65 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Login() {
+    const [users, setUsers] = useState([])
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin() {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const getUsers = async() => {
+            const response = await axios.get('http://localhost:5000/users')
+             setUsers(response.data)
+
+        }
+
+       
+        getUsers()
+
+    }, [])
+
+
+
+    const  handleLogin = async () => {
         if (email === "") {
-            alert("Email is Required");
+            toast.error("Email is Required");
             return;
         }
 
         if (password === "") {
-            alert("Password is Required");
+            toast.error("Password is Required");
             return;
         }
 
-        alert("Validation Successful");
+        try {
+            const response = await axios.get(`http://localhost:5000/users?email=${email}`)
+
+            if (response.data.length === 0) {
+                toast.error("User not found")
+                return
+            } 
+
+            const user = response.data[0]
+
+            if(user.password !== password) {
+                toast.error("Incorrect password")
+                return 
+            } 
+
+            localStorage.setItem("user", JSON.stringify(user));
+
+            toast.success("Login successfully")
+            navigate("/")
+
+        } catch(error) {
+            console.log(error)
+        }
     }
 
 
