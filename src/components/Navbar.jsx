@@ -8,6 +8,16 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems)
 
+  console.log(cartItems)
+
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  console.log(totalItems)
+
+
 
   return (
     <>
@@ -22,9 +32,9 @@ const Navbar = () => {
         <div>
           <Link to="/cart">
             <HiOutlineShoppingCart size={24} className='logo-icon' />
-            {cartItems.length > 0 && (
+            {totalItems > 0 && (
               <span className="absolute top-2 right-3 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                {cartItems.length}
+                {totalItems}
               </span>
             )}
 
