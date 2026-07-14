@@ -17,9 +17,9 @@ function App() {
       <Toaster />
       <BrowserRouter>
         <Routes>
-          <Route path='/register' element={<Register />}/>
-          <Route path='/login' element={<Login />} />
           <Route element={<MainLayout />}>
+            <Route path='/register' element={<Register />}/>
+            <Route path='/login' element={<Login />} />
             <Route path='/' element={<ProductList />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/product-details/:productid' element={<Singleview/>}/>
