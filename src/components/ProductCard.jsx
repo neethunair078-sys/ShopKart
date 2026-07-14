@@ -24,21 +24,23 @@ const ProductCard = ({item, thumbnail, title, price, rating,reviews}) => {
   return (
     <>
         <div className='card p-5 space-y-4'>
-            <img src={thumbnail} alt="" />
-            <h2 className='text-md font-bold'>{title}</h2>
-            <StarRating rating={rating} reviews={reviews} />
-            <p className='font-bold'>${price}</p>
+            <Link to={`/product-details/${item.id}`}>
+                <img src={thumbnail} alt="" />
+                <h2 className='text-md font-bold'>{title}</h2>
+                <StarRating rating={rating} reviews={reviews} />
+                <p className='font-bold'>${price}</p>
+            </Link>
             
 
             {!isAdded ? 
-              <button  className='btn-primary flex items-center justify-center gap-2' onClick={handleAddToCart}>
+              <button  className='btn-primary flex items-center justify-center gap-2 p-1 mt-2' onClick={handleAddToCart}>
                 <HiOutlineShoppingCart size={20} className='logo-icon' /> 
                 Add to cart
             </button>  
 
             :
 
-            <Link to="/cart" className='btn-primary flex items-center justify-center gap-2'>
+            <Link to="/cart" className='btn-primary flex items-center justify-center gap-2 p-1 mt-2'>
                 <HiOutlineShoppingCart size={20} className='logo-icon' /> 
                 Go to cart 
             </Link>  

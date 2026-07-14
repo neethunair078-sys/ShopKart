@@ -6,6 +6,7 @@ import ProductList from './pages/ProductList'
 import Cart from './pages/Cart'
 import { Provider } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
+import Singleview from './pages/Singleview'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path='/' element={<ProductList />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/product-details/:productid' element={<Singleview/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
