@@ -79,12 +79,12 @@ const Checkout = () => {
 
             {/* Confirm Button */}
             <div className="mt-8">
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 confirm-btn">
+            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-300 confirm-btn">
                 Confirm Order
             </button>
             </div>
-            <div className="mt-9 justify-between">
-                <button className="w-36 bg-blue-400 justify-center rounded-lg font-bold text-shadow-white hover:bg-red-800">Cancel</button>
+            <div className="flex flex-col items-center mt-9">
+                <button className="w-36 bg-blue-400 justify-center rounded-lg font-bold text-shadow-white hover:bg-red-600">Back to Cart</button>
             </div>
 
         </div>
