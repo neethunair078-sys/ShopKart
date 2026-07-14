@@ -26,11 +26,10 @@ body,
 }
 
 .btn-primary {
-  border:1px solid  #2563EB; 
+  border:1px solid  #2563EB;
+  border-radius: 5px; 
   color: #2563EB;
-
   width: 100%;
-
   font-weight: 600;
   cursor: pointer;
 }

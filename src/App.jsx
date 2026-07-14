@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import Login from './pages/login'
 import { Toaster } from 'react-hot-toast'
 import Register from './pages/Register'
+import Singleview from './pages/Singleview'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path='/' element={<ProductList />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/product-details/:productid' element={<Singleview/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
