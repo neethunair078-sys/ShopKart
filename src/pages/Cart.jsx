@@ -32,9 +32,9 @@ const Cart = () => {
                             <div className="cart-details">
                                 <h2>{item.title}</h2>
                                 <div className="quantity">
-                                    <button onClick={() => handlequantityInc(item.id)}>+</button>
+                                    <button onClick={() => handlequantityInc(item.id)}>-</button>
                                     <span>{item.quantity}</span>
-                                    <button onClick={() => handlequantityDec(item.id)}>-</button>
+                                    <button onClick={() => handlequantityDec(item.id)}>+</button>
                                     <div className="price-section">
                                      <p>${item.price}</p>
                                     <p className="remove">Remove</p>
