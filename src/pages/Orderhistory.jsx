@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
+
 const Orderhistory = () => {
+  const  navigate  = useNavigate();
     return (
         
         <div>
@@ -23,7 +27,8 @@ const Orderhistory = () => {
                 <div className="flex flex-col items-center mt-6">
                     <p>Ready for more? Continue shopping below.</p>
 
-                    <button className="bg-blue-200 rounded-lg px-6 py-2 hover:bg-green-300">Continue Shopping!
+                    <button onClick ={() => navigate("/")}
+                     className="bg-blue-200 rounded-lg px-6 py-2 hover:bg-green-300">Continue Shopping!
                          </button>
                  </div>
            </div>
