@@ -46,7 +46,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div className='flex gap-4 items-center'>
+        <div className='flex gap-6 items-center'>
           {user ?
             <>
               <p><HiOutlineUser size={20} className="inline text-gray-900" /> {user.name}</p>
