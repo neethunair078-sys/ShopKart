@@ -1,18 +1,29 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast"
+import {addOrder} from "../redux/slices/orderSlice"
 
 const Checkout = () => {
     
     const cartitems= useSelector((state) =>state.cart.cartItems);
 
     const navigate = useNavigate(); 
+    const dispatch  = useDispatch();
 
     const total = cartitems.reduce((sum,item ) => {
         return sum + item.price  * item.quantity;
     }, 0);
 
     const handleConfirmOrder = () => {
+
+        dispatch(addOrder({
+        id: Date.now(),
+        items: cartitems,
+        total: total,
+        paymentMethod: "Cash on Delivery",
+        status: "Delivered"
+    }));
+
         toast.success("Order Confirmed Successfully!" );
         navigate("/Orderhistory"); 
     }
@@ -57,69 +68,74 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* Order Summary */}
-        <div className="order-summary bg-gray-100 p-6 rounded-lg mt-6">
+     <div className="grid grid-cols-3 gap-6 mt-6">
 
-    <h2 className="text-xl font-semibold mb-4">
-        Order Summary
-    </h2>
+    {/* Order Summary */}
+    <div className="col-span-2 order-summary bg-gray-100 p-6 rounded-lg">
 
-    {cartitems.map((item) => (
-        <div
-            key={item.id}
-            className="flex justify-between items-center border-b py-4"
-        >
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
+        <h2 className="text-xl font-semibold mb-4">
+            Order Summary
+        </h2>
 
-                <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className="w-16 h-16 rounded-lg object-cover"
-                />
+        {cartitems.map((item) => (
+            <div
+                key={item.id}
+                className="flex justify-between items-center border-b py-4"
+            >
+                <div className="flex items-center gap-4">
 
-                <div>
-                    <h3 className="font-semibold">
-                        {item.title}
-                    </h3>
+                    <img
+                        src={item.thumbnail}
+                        alt={item.title}
+                        className="w-16 h-16 rounded-lg object-cover"
+                    />
 
-                    <p className="text-gray-500">
-                        Quantity: {item.quantity}
-                    </p>
+                    <div>
+                        <h3 className="font-semibold">{item.title}</h3>
+                        <p className="text-gray-500">
+                            Quantity: {item.quantity}
+                        </p>
+                    </div>
+
                 </div>
 
+                <div>
+                    <p className="font-semibold">
+                        ${item.price * item.quantity}
+                    </p>
+                </div>
             </div>
+        ))}
 
-            {/* Right Side */}
-            <div className="text-right">
-                <p className="font-semibold">
-                    ${item.price * item.quantity}
-                </p>
-            </div>
-
+        <div className="flex justify-between font-bold text-lg mt-4">
+            <p>Total</p>
+            <p>${total}</p>
         </div>
-    ))}
 
-    <div className="flex justify-between font-bold text-lg mt-4">
-        <p>Total</p>
-        <p>${total}</p>
     </div>
 
-</div>
-{/* Payment Section */}
-<div className="payment-section bg-blue-50 p-6 rounded-lg mt-8 top-4">
-    <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
+    {/* Payment Section */}
+    <div className="payment-section bg-blue-50 p-6 rounded-lg h-fit">
 
-    <div className="payment-option">
-        <div className="payment-option">
+        <h2 className="text-xl font-semibold mb-4">
+            Payment Method
+        </h2>
+
+        <div className="flex items-center gap-2">
             <input
                 type="radio"
                 id="cod"
                 name="payment"
+                defaultChecked
             />
-            <label htmlFor="cod">Cash on Delivery</label>
+
+            <label htmlFor="cod">
+                Cash on Delivery
+            </label>
         </div>
+
     </div>
+
 </div>
             {/* Confirm Button */}
             <div className="mt-8">
@@ -127,10 +143,6 @@ const Checkout = () => {
             className="w-full bg-blue-600 px-8 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 confirm-btn">
                 Confirm Order
             </button>
-            </div>
-            <div className="flex flex-col items-center mt-9">
-                <button onClick ={() => navigate("/cart")}
-                 className="w-auto bg-blue-600 justify-center rounded-bl-full font-bold text-shadow-white hover:bg-blue-700">Back to Cart</button>
             </div>
 
         </div>

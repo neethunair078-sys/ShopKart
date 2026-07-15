@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Orderhistory = () => {
+  const orders = useSelector((state) => state.order.orders);
   const  navigate  = useNavigate();
     return (
         
