@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import registerImage from "../assets/Register_1";
 
 
 
@@ -62,25 +63,23 @@ function Register() {
 
         <>
 
-            <div className="min-h-screen bg-gray-100">
+            <div className="min-h-screen min-e-screen bg-gray-100 rounded-md">
 
 
                 <div className="flex justify-center">
 
-                    <div>
-                        <h1 className="text-5xl font-bold mb-4">
-                            Create Account
-                        </h1>
-
-                        <p className="text-gray-500 text-xl mb-10">
+                    <div className="w-1/2 flex flex-col justify-center items-center p-10">
+                        <h1 className="text-6xl font-bold mb-4"> Create Account  </h1>
+                        <p className="text-gray-500 text-2xl mt-4">
                             Register to enjoy a seamless shopping experience.
                         </p>
+                        <img src={registerImage} alt="Register_1" className="w-96" object-contain opacity-95 drop-shadow-xl hover:scale-105  />
                     </div>
 
 
-                    <div>
-                        <div className="bg-white shadow-xl rounded-2xl p-12">
-                            <h1>Register</h1>
+                    <div className="w-1/2 flex flex-col justify-center items-center p-10">
+                        <div className=" bg-white shadow-xl rounded-2xl p-12">
+                            <h1 className="text-3xl font-bold mb-4 p-6 align-content:center">Register</h1>
                             <label className="font-semibold">Full Name</label>
                             <input type="name" placeholder="Enter Name" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={name} onChange={(e) => setName(e.target.value)} />
                             <label className="font-semibold">Email</label>
@@ -91,15 +90,17 @@ function Register() {
                             <input type="password" placeholder="Enter Password" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
 
                             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition" onClick={handleRegister}>Register</button>
+                            <p className="text-center mt-6">Already have an account?
+                                <span className="text-blue-600 cursor-pointer ml-2">
+                                    Login
+                                </span>
+                            </p>
                         </div>
+
                     </div>
                 </div>
 
-                <p className="text-center mt-6">Already have an account?
-                    <span className="text-blue-600 cursor-pointer ml-2">
-                        Login
-                    </span>
-                </p>
+
                 <div>
                     <div className="grid md:grid-cols-3 gap-10 bg-white mt-16 py-8 shadow">
 

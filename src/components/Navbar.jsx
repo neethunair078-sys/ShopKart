@@ -41,7 +41,7 @@ const handleLogout = () => {
 
         <div className='flex gap-4 items-center'>
 
-          <p>{user.name}</p>
+          {/* <p>{user.name}</p> */}
 
           {user ? 
             <button onClick={handleLogout} className='cursor-pointer bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow'>
