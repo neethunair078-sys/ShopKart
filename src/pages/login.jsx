@@ -76,7 +76,7 @@ function Login() {
                         Login to continue shopping.
                     </p>
 
-                    <img src={loginImage} alt="login" className="w-96 mt-8" />
+                    <img src={loginImage} alt="login.png" className="w-96 mt-8" />
                 </div>
                 <div className="w-1/2 flex justify-center items-center bg-white">
 
