@@ -83,27 +83,9 @@ function Login() {
                     <div className="w-[450px] shadow-lg rounded-xl p-8">
 
                         <h1 className="text-3xl font-bold mb-6">  Login </h1>
-
-                        <div className="relative mt-2 mb-6">
-
-                            <FaEnvelope
-                                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 text-lg" />
-
-                            <input type="email" placeholder="           Enter Email" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500 p-20" value={email} onChange={(e) => setEmail(e.target.value)} />
-
-                        </div>
+                        <input type="email" placeholder="  Enter Email" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500 p-20" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <label className="font-semibold">Password</label>
-                        <div className="relative mt-2 mb-6">
-
-                            <FaLock
-                                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 text-lg"
-                            />
-
-                            <input type="Password" placeholder="            Enter Password" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-                            <FaEye className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-700 cursor-pointer" />
-
-                        </div>
+                        <input type="Password" placeholder="Enter Password" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={password} onChange={(e) => setPassword(e.target.value)} />
                         <button className="w-full bg-blue-600 text-white py-3 rounded-lg" onClick={handleLogin}>Login</button>
                         <p className="text-center mt-6">Don't have an account?
                             <span className="text-blue-600 cursor-pointer ml-2">
