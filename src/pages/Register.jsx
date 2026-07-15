@@ -16,9 +16,6 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async () => {
-        // console.log("Register")
-
-
 
         const existingUser = await axios.get(
             `http://localhost:5000/users?email=${email}`

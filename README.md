@@ -1,16 +1,138 @@
-# React + Vite
+# 🛒 ShopKart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce web application built with **React**, **Redux Toolkit**, **React Router**, **Tailwind CSS**, and **JSON Server**. The application allows users to browse products, view product details, manage a shopping cart, register/login, and proceed to checkout.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+### 🛍️ Product Management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* View all available products
+* Product details page
+* Product ratings and reviews
+* Responsive product grid layout
 
-## Expanding the ESLint configuration
+### 🛒 Shopping Cart
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Add products to cart
+* Remove products from cart
+* Increase/Decrease product quantity
+* Automatically update cart total
+* Display cart item count in the navigation bar
+* Empty cart functionality
+* Cart data persists using localStorage
+
+### 👤 User Authentication
+
+* User Registration
+* User Login
+* Logout functionality
+* Prevent duplicate email registration
+* Store logged-in user using Local Storage
+
+### 💳 Checkout
+
+* Checkout available only for logged-in users
+* Order summary
+* Cash on Delivery payment option
+* Clear cart after successful order
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React.js
+* Redux Toolkit
+* React Router DOM
+* Tailwind CSS
+* React Icons
+* Axios
+* React toaster
+
+### Backend (Mock API)
+
+* JSON Server
+
+### State Management
+
+* Redux Toolkit
+
+
+---
+
+## ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/neethunair078-sys/ShopKart.git
+```
+
+Move into the project folder
+
+```bash
+cd ShopKart-ecommerce
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the React application
+
+```bash
+npm run dev
+```
+
+---
+
+## ▶️ Run JSON Server
+
+Install JSON Server (if not already installed)
+
+```bash
+npm install -g json-server
+```
+
+Start the server
+
+```bash
+json-server --watch db.json --port 5000
+```
+
+API URL
+
+```text
+http://localhost:5000
+```
+
+---
+
+## 📌 API Endpoints
+
+### Products
+
+```text
+GET /products
+GET /products/:id
+```
+
+### Users
+
+```text
+GET /users
+POST /users
+GET /users?email=user@example.com
+```
+
+---
+
+
+## 📄 License
+
+This project is created for learning and portfolio purposes.
