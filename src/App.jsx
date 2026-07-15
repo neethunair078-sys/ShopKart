@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast'
 import Checkout from './pages/Checkout' 
 import Register from './pages/Register'
 import Singleview from './pages/Singleview'
-import Orderhistory from './pages/Orderhistory'
+import Orderhistory from './pages/Orderhistory' 
 
 function App() {
 

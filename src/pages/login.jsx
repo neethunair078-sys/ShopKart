@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/Login.png";
-
+import { FaUser, FaEnvelope, FaLock, FaPhone, FaEye } from "react-icons/fa";
 
 
 function Login() {
     const [users, setUsers] = useState([])
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
 
     const navigate = useNavigate()
 
@@ -75,26 +76,72 @@ function Login() {
                         Login to continue shopping.
                     </p>
 
-                    <img src={loginImage} alt="login" className="w-96 mt-8" />
+                    <img src={loginImage} alt="login.png" className="w-96 mt-8" />
                 </div>
                 <div className="w-1/2 flex justify-center items-center bg-white">
 
                     <div className="w-[450px] shadow-lg rounded-xl p-8">
 
                         <h1 className="text-3xl font-bold mb-6">  Login </h1>
-                        <label className="font-semibold">Email</label>
-                        <input type="email" placeholder="Enter Email" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={email} onChange={(e) => setEmail(e.target.value)} />
-                        <label className="font-semibold">Password</label>
-                        <input type="Password" placeholder="Enter Password" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={password} onChange={(e) => setPassword(e.target.value)} />
 
+                        <div className="relative mt-2 mb-6">
+
+                            <FaEnvelope
+                                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 text-lg" />
+
+                            <input type="email" placeholder="           Enter Email" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500 p-20" value={email} onChange={(e) => setEmail(e.target.value)} />
+
+                        </div>
+                        <label className="font-semibold">Password</label>
+                        <div className="relative mt-2 mb-6">
+
+                            <FaLock
+                                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700 text-lg"
+                            />
+
+                            <input type="Password" placeholder="            Enter Password" className="w-full border border-gray-300 rounded-lg px-4 py-3 mt-2 mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+                            <FaEye className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-700 cursor-pointer" />
+
+                        </div>
                         <button className="w-full bg-blue-600 text-white py-3 rounded-lg" onClick={handleLogin}>Login</button>
                         <p className="text-center mt-6">Don't have an account?
-                                <span className="text-blue-600 cursor-pointer ml-2">
-                                    Register
-                                </span>
+                            <span className="text-blue-600 cursor-pointer ml-2">
+                                <Link to="/register">Register</Link>
+                            </span>
                         </p>
 
                     </div>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-10 bg-white mt-16 py-8 shadow">
+
+                <div className="text-center">
+                    <h3 className="font-bold text-lg">
+                        Secure Shopping
+                    </h3>
+                    <p className="text-gray-500">
+                        100% secure and protected
+                    </p>
+                </div>
+
+                <div className="text-center">
+                    <h3 className="font-bold text-lg">
+                        Fast Delivery
+                    </h3>
+                    <p className="text-gray-500">
+                        Get your products quickly
+                    </p>
+                </div>
+
+                <div className="text-center">
+                    <h3 className="font-bold text-lg">
+                        24/7 Support
+                    </h3>
+                    <p className="text-gray-500">
+                        We're here anytime
+                    </p>
                 </div>
 
             </div>

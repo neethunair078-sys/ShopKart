@@ -2,6 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import registerImage from "../assets/Register_1.png";
+import { Link } from "react-router-dom";
+
+
 
 function Register() {
     const [name, setName] = useState("");
@@ -87,7 +90,7 @@ function Register() {
                             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition" onClick={handleRegister}>Register</button>
                             <p className="text-center mt-6">Already have an account?
                                 <span className="text-blue-600 cursor-pointer ml-2">
-                                    Login
+                                    <Link to="/login">Login</Link>
                                 </span>
                             </p>
                         </div>
