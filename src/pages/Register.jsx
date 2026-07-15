@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import registerImage from "../assets/Register_1";
-
-
+import registerImage from "../assets/Register_1.png";
 
 function Register() {
     const [name, setName] = useState("");
@@ -15,9 +13,6 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async () => {
-        // console.log("Register")
-
-
 
         const existingUser = await axios.get(
             `http://localhost:5000/users?email=${email}`
