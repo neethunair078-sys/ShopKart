@@ -25,6 +25,7 @@ const Checkout = () => {
     }));
 
         toast.success("Order Confirmed Successfully!" );
+        
         navigate("/Orderhistory"); 
     }
 
