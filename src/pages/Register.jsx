@@ -22,24 +22,31 @@ function Register() {
             `http://localhost:5000/users?email=${email}`
         );
 
+
+        if (existingUser.data.length > 0) {
+            toast.error("Email is already registered");
+            return;
+        }
+
+
         if (name === "") {
-            alert("Name is Required")
+            toast.error("Name is Required")
             return;
         }
         if (email === "") {
-            alert("Email is Required")
+            toast.error("Email is Required")
             return;
         }
         if (password === "") {
-            alert("password is Required")
+            toast.error("password is Required")
             return;
         }
         if (confirmPassword === "") {
-            alert("confirm ypur Password")
+            toast.error("confirm ypur Password")
             return;
         }
         if (password !== confirmPassword) {
-            alert("Passwords do not match")
+            toast.error("Passwords do not match")
             return;
         }
 
