@@ -74,12 +74,11 @@ const Cart = () => {
 
     return (
         <div className="cart-page">
-            <h1>SHOPINGCART</h1>
+            {/* <h1>SHOPINGCART</h1> */}
             <div className="grid grid-cols-3 gap-6">
                 <div className=" col-span-2 bg-gray-100 p-4">
                     {cartitems.map((item) => (
                         <div key={item.id} className="cart-items">
-
 
                             <img src={item.thumbnail} alt="" />
 

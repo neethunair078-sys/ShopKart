@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
-    orders: []
+    orders: JSON.parse(localStorage.getItem("orders")) || []
 };
 
 const orderSlice = createSlice({
@@ -10,7 +11,14 @@ const orderSlice = createSlice({
     reducers: {
         addOrder: (state, action) => {
             state.orders.push(action.payload);
+
+            localStorage.setItem(
+                "orders",
+                JSON.stringify(state.orders)
+            )
         }
+
+        
     }
 });
 
