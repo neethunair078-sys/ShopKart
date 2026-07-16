@@ -80,7 +80,6 @@ const Cart = () => {
                     {cartitems.map((item) => (
                         <div key={item.id} className="cart-items">
 
-
                             <img src={item.thumbnail} alt="" />
 
 
