@@ -16,7 +16,7 @@ function Register() {
 
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    function validatePassword(password) {
+    function validatePassword() {
          if (password.length < 8) {
             return "Password must be at least 8 characters.";
         }
@@ -70,7 +70,13 @@ function Register() {
             return;
         }
 
-        validatePassword()
+        // validatePassword()
+        const passwordError = validatePassword();
+
+        if (passwordError) {
+            toast.error(passwordError);
+            return;
+        }
         
         const user = {
             name,
