@@ -2,11 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import registerImage from "../assets/Register_1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 function Register() {
+    const navigate = useNavigate()
     const [name, setName] = useState("");
 
     const [email, setEmail] = useState("");
@@ -51,6 +52,7 @@ function Register() {
         try {
             await axios.post("http://localhost:5000/users", user);
             toast.success("Registration Successful")
+            navigate('/login')
         } catch (error) {
             console.log(error);
         }
