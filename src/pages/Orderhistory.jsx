@@ -16,13 +16,22 @@ const Orderhistory = () => {
       {orders.map((order) => (
         <div key={order.id}>
           {order.items.map((product) => (
-            <div className="rounded-lg bg-blue-200 p-6 mt-6 order-card">
+            <div 
+            key={product.id}
+            className="rounded-lg bg-blue-200 p-6 mt-6 order-card">
             <h2>Order #1001</h2>
-            <p>Product: {product.title}</p>
-            <p>Quantity: {product.quantity}</p>
-            <p>Total Amount:</p>
-            <p>Payment Method:</p>
-            <p>Order Status:</p>
+            <h2>Order #{order.id}</h2>
+
+          <p>Product: {product.title}</p>
+
+          <p>Quantity: {product.quantity}</p>
+
+          <p>Total Amount: ${order.total}</p>
+
+          <p>Payment Method: {order.paymentMethod}</p>
+
+          <p>Order Status: {order.status}</p>
+            
           </div>
           ))}
         </div>
