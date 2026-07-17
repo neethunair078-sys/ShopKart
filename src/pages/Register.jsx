@@ -53,7 +53,9 @@ function Register() {
         const user = {
             name,
             email,
-            password
+            password,
+            cart: [],
+            orders: [],
         };
 
         try {

@@ -5,6 +5,7 @@ import { decrementQuantity, incrementQuantity, removeFromCart } from "../redux/s
 import toast from "react-hot-toast"
 import { Link, useNavigate } from "react-router-dom"
 import emptyCart from '../assets/empty-cart.webp'
+import updateUserCart from "../utils/updateUserCart"
 
 const Cart = () => {
 
@@ -12,23 +13,55 @@ const Cart = () => {
 
     const cartitems = useSelector((state) => state.cart.cartItems)
 
+    const user = useSelector((state) => state.auth.user);
+
 
     const dispatch = useDispatch()
 
-    const handlequantityInc = (id) => {
+    const handlequantityInc = async (id) => {
         dispatch(incrementQuantity(id))
+
+        // const updatedCart = cartitems.map((item) =>
+        //     item.id === id
+        //         ? { ...item, quantity: item.quantity + 1 }
+        //         : item
+        // );
+
+        // if (user) {
+        //     await updateUserCart(user.id, updatedCart);
+        // }
     }
 
-    const handlequantityDec = (id) => {
+    const handlequantityDec = async (id) => {
+
         dispatch(decrementQuantity(id))
+
+        // const updatedCart = cartitems.map((item) =>
+        //     item.id === id && item.quantity > 1
+        //         ? { ...item, quantity: item.quantity - 1 }
+        //         : item
+        // );
+
+        // if (user) {
+        //     await updateUserCart(user.id, updatedCart);
+        // }
     }
 
-    const handleRemove = (id) => {
+    const handleRemove = async (id) => {
+
         dispatch(removeFromCart(id))
+
+        // const updatedCart = cartitems.filter(
+        //     (item) => item.id !== id
+        // );
+        
+
+        // if (user) {
+        //     await updateUserCart(user.id, updatedCart);
+        // }
     }
 
-    const handleCheckout = () => {
-        const user = JSON.parse(localStorage.getItem("user"));
+    const handleCheckout = async () => {
 
         if (!user) {
             toast.error("Please login to continue.");
@@ -36,6 +69,7 @@ const Cart = () => {
             return;
         }
 
+        await updateUserCart(user.id, cartitems);
         navigate("/checkout");
     }
 
@@ -46,31 +80,31 @@ const Cart = () => {
     );
 
     if (cartitems.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center py-15 text-center">
-        <img
-          src={emptyCart}
-          alt="Empty Cart"
-          className="w-60 mb-6"
-        />
+        return (
+            <div className="flex flex-col items-center justify-center py-15 text-center">
+                <img
+                    src={emptyCart}
+                    alt="Empty Cart"
+                    className="w-60 mb-6"
+                />
 
-        <h2 className="text-2xl font-bold mb-2">
-          Your cart is empty
-        </h2>
+                <h2 className="text-2xl font-bold mb-2">
+                    Your cart is empty
+                </h2>
 
-        <p className="text-gray-500 mb-6">
-          Looks like you haven't added anything yet. <br /> Explore our products and find something you'll love!
-        </p>
+                <p className="text-gray-500 mb-6">
+                    Looks like you haven't added anything yet. <br /> Explore our products and find something you'll love!
+                </p>
 
-        <Link
-          to="/"
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg"
-        >
-          Continue Shopping
-        </Link>
-      </div>
-    );
-  }
+                <Link
+                    to="/"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg"
+                >
+                    Continue Shopping
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <div className="cart-page">

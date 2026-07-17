@@ -6,48 +6,79 @@ import { addToCart } from '../redux/slices/cartSlice'
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import updateUserCart from '../utils/updateUserCart'
 
 
-const ProductCard = ({item, thumbnail, title, price, rating,reviews}) => {
+const ProductCard = ({ item, thumbnail, title, price, rating, reviews }) => {
     const dispatch = useDispatch()
 
     const cartItem = useSelector((state) => state.cart.cartItems)
+
+    const user = useSelector((state) => state.auth.user);
 
 
 
     const isAdded = cartItem.find(cartItem => cartItem.id === item.id)
 
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         dispatch(addToCart(item));
+
+        // if (user) {
+        //     const existingItem = cartItem.find(
+        //         (cart) => cart.id === item.id
+        //     );
+
+        //     let updatedCart;
+
+        //     if (existingItem) {
+        //         updatedCart = cartItem.map((cart) =>
+        //             cart.id === item.id
+        //                 ? { ...cart, quantity: cart.quantity + 1 }
+        //                 : cart
+        //         );
+        //     } else {
+        //         updatedCart = [
+        //             ...cartItem,
+        //             {
+        //                 ...item,
+        //                 quantity: 1,
+        //             },
+        //         ];
+        //     }
+
+        //     await updateUserCart(user.id, updatedCart);
+        // }
+
         toast.success("Added to your cart succesfully")
+
     }
-  return (
-    <>
-        <div className='card p-5 space-y-4'>
-            <Link to={`/product-details/${item.id}`}>
-                <img src={thumbnail} alt="" />
-                <h2 className='text-md font-bold'>{title}</h2>
-                <StarRating rating={rating} reviews={reviews} />
-                <p className='font-bold'>${price}</p>
-            </Link>
-            
+    return (
+        <>
+            <div className='card p-5 space-y-4'>
+                <Link to={`/product-details/${item.id}`}>
+                    <img src={thumbnail} alt="" />
+                    <h2 className='text-md font-bold'>{title}</h2>
+                    <StarRating rating={rating} reviews={reviews} />
+                    <p className='font-bold'>${price}</p>
+                </Link>
 
-            {!isAdded ? 
-              <button  className='btn-primary flex items-center justify-center gap-2 p-1 mt-2' onClick={handleAddToCart}>
-                <HiOutlineShoppingCart size={20} className='logo-icon' /> 
-                Add to cart
-            </button>  
 
-            :
+                {!isAdded ?
+                    <button type="button" className='btn-primary flex items-center justify-center gap-2 p-1 mt-2' onClick={handleAddToCart}>
+                        <HiOutlineShoppingCart size={20} className='logo-icon' />
+                        Add to cart
+                    </button>
 
-            <Link to="/cart" className='btn-primary flex items-center justify-center gap-2 p-1 mt-2'>
-                <HiOutlineShoppingCart size={20} className='logo-icon' /> 
-                Go to cart 
-            </Link>  
-            }
-        </div>
-    </>
-  )
+                    :
+
+                    <Link to="/cart" className='btn-primary flex items-center justify-center gap-2 p-1 mt-2'>
+                        <HiOutlineShoppingCart size={20} className='logo-icon' />
+                        Go to cart
+                    </Link>
+                }
+            </div>
+        </>
+    )
 }
 
 export default ProductCard
