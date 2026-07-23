@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import toast from 'react-hot-toast';
 import { clearCart } from '../redux/slices/cartSlice';
+import { logout } from '../redux/slices/authSlice'
+import updateUserCart from '../utils/updateUserCart';
 
 
 const Navbar = () => {
@@ -14,7 +16,7 @@ const Navbar = () => {
 
   const cartItems = useSelector((state) => state.cart.cartItems)
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = useSelector((state) => state.auth.user);
 
 
 
@@ -27,11 +29,20 @@ const Navbar = () => {
 
 
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
+  const handleLogout = async () => {
+
+    if (user) {
+      await updateUserCart(
+        user.id,
+        cartItems
+      );
+    }
+
     dispatch(clearCart())
     toast.success("Logout successfully")
+    dispatch(logout())
     navigate('/')
+    
   }
 
 

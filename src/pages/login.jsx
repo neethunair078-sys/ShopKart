@@ -3,35 +3,27 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/Login.png";
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaEye } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authSlice";
+import { loadCart } from "../redux/slices/cartSlice";
+import updateUserCart from "../utils/updateUserCart";
 
 
 function Login() {
-    const [users, setUsers] = useState([])
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const getUsers = async () => {
-            const response = await axios.get('http://localhost:5000/users')
-            setUsers(response.data)
-        }
-        getUsers()
-
-    }, [])
-
-
+    const dispatch = useDispatch()
 
     const handleLogin = async () => {
-        if (email === "") {
+        if (!email.trim()) {
             toast.error("Email is Required");
             return;
         }
 
-        if (password === "") {
+        if (!password.trim()) {
             toast.error("Password is Required");
             return;
         }
@@ -51,13 +43,14 @@ function Login() {
                 return
             }
 
-            localStorage.setItem("user", JSON.stringify(user));
-
+            dispatch(login(user));
+            dispatch(loadCart(user.cart || []));
             toast.success("Login successfully")
             navigate("/")
 
         } catch (error) {
             console.log(error)
+            toast.error("Something went wrong");
         }
     }
 
