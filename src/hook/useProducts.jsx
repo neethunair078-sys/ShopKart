@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../redux/slices/productSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import API_URL from "../api/config";
 
 const useProducts = () => {
     const dispatch = useDispatch();
@@ -9,13 +10,16 @@ const useProducts = () => {
 
     useEffect(() => {
         if (products.length === 0) {
-            axios.get("http://localhost:5000/products").then((res) => {
+            axios.get(`${API_URL}/products`).then((res) => {
                 dispatch(allProducts(res.data));
             });
         }
     }, []);
 
+   
+
     return products;
+    
 };
 
 export default useProducts

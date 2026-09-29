@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import toast from "react-hot-toast";
+import API_URL from "../api/config";
 
 const Singleview = () => {
   const [product, setProduct] = useState(null);
@@ -28,7 +29,7 @@ const Singleview = () => {
     const getProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${productid}`
+          `${API_URL}/products/${productid}`
         );
 
         setProduct(response.data);
