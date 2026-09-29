@@ -14,7 +14,7 @@ import storageImport from "redux-persist/lib/storage";
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 import productReducer from "./slices/productSlice";
 import cartReducer from "./slices/cartSlice";
-import orderReducer from "./slices/orderslice";
+import orderReducer from "./slices/orderSlice";
 import authReducer from "./slices/authSlice"
 
 
