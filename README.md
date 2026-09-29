@@ -60,7 +60,6 @@ A modern e-commerce web application built with **React**, **Redux Toolkit**, **R
 
 * Redux Toolkit
 
-
 ---
 
 ## ⚙️ Installation
