@@ -14,6 +14,7 @@ const products = useProducts() // custom hook for all the product listing
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
             {products.map((item) => (
                 <ProductCard 
+                    key={item.id}
                     item={item}
                     thumbnail={item.thumbnail} 
                     title={item.title} 

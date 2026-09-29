@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import registerImage from "../assets/Register_1.png";
 import { Link, useNavigate } from "react-router-dom";
+import API_URL from "../api/config";
 
 
 
@@ -39,7 +40,7 @@ function Register() {
     const handleRegister = async () => {
 
         const existingUser = await axios.get(
-            `http://localhost:5000/users?email=${email}`
+            `${API_URL}/users?email=${email}`
         );
 
 
@@ -87,7 +88,7 @@ function Register() {
         };
 
         try {
-            await axios.post("http://localhost:5000/users", user);
+            await axios.post("${API_URL}/users", user);
             toast.success("Registration Successful")
             navigate('/login')
         } catch (error) {

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/authSlice";
 import { loadCart } from "../redux/slices/cartSlice";
 import updateUserCart from "../utils/updateUserCart";
+import API_URL from "../api/config";
 
 
 function Login() {
@@ -29,7 +30,7 @@ function Login() {
         }
 
         try {
-            const response = await axios.get(`http://localhost:5000/users?email=${email}`)
+            const response = await axios.get(`${API_URL}/users?email=${email}`)
 
             if (response.data.length === 0) {
                 toast.error("User not found")
