@@ -19,7 +19,6 @@ const Orderhistory = () => {
             <div 
             key={product.id}
             className="rounded-lg bg-blue-200 p-6 mt-6 order-card">
-            <h2>Order #1001</h2>
             <h2>Order #{order.id}</h2>
 
           <p>Product: {product.title}</p>
